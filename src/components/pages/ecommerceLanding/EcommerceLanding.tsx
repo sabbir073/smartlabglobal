@@ -1,5 +1,6 @@
 import "./ecommerce.scss";
 
+import Reveal from "../_shared/Reveal";
 import EcmHeader from "./components/EcmHeader";
 import EcmFooter from "./components/EcmFooter";
 import MobileStickyCta from "./components/MobileStickyCta";
@@ -65,6 +66,7 @@ export default function EcommerceLanding() {
 
   return (
     <div className="ecm-root">
+      <Reveal rootClass="ecm-root" />
       <EcmHeader />
 
       <main>

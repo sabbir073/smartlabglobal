@@ -120,7 +120,7 @@ html.dark .bot-root {
   }
   .bot-btn-ghost:hover { border-color: var(--bot-accent); color: var(--bot-accent); }
 
-  .bot-section { padding-block: clamp(60px, 8vw, 110px); position: relative; }
+  .bot-section { padding-block: clamp(48px, 6vw, 82px); position: relative; }
   .bot-section--alt { background: var(--bot-bg-2); }
   .bot-head { max-width: 720px; margin-bottom: 48px; }
   .bot-center { margin-inline: auto; text-align: center; }
@@ -141,7 +141,56 @@ html.dark .bot-root {
     display: flex; align-items: center;
     background: color-mix(in srgb, var(--bot-bg) 82%, transparent);
     backdrop-filter: blur(14px); border-bottom: 1px solid var(--bot-line-soft);
+    animation: bot-header-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
+  .bot-header.is-scrolled {
+    height: 60px;
+    background: color-mix(in srgb, var(--bot-bg) 95%, transparent);
+    box-shadow: 0 12px 34px -18px rgba(0, 0, 0, 0.45);
+    border-bottom-color: transparent;
+  }
+  @keyframes bot-header-in {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  &.reveal-ready {
+    .bot-head, .bot-chat, .bot-cap, .bot-uc, .bot-step, .bot-roi-item,
+    .bot-why, .bot-tst, .bot-price, .bot-how-media, .bot-channels span,
+    .bot-trust span {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .bot-chat { transform: translateY(36px) scale(0.97); }
+    .bot-how-media { transform: scale(0.93); }
+
+    section.in-view {
+      .bot-head, .bot-chat, .bot-cap, .bot-uc, .bot-step, .bot-roi-item,
+      .bot-why, .bot-tst, .bot-price, .bot-how-media, .bot-channels span,
+      .bot-trust span {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .bot-bento .bot-cap,
+    .bot-uc-grid .bot-uc,
+    .bot-steps .bot-step,
+    .bot-roi .bot-roi-item,
+    .bot-why-grid .bot-why,
+    .bot-tst-grid .bot-tst,
+    .bot-price-grid .bot-price,
+    .bot-channels span {
+      @for $i from 1 through 12 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.06}s; }
+      }
+    }
+  }
+
   .bot-brand {
     display: flex; align-items: center; gap: 10px; text-decoration: none;
     color: var(--bot-ink); font-family: var(--bot-display); font-weight: 700;

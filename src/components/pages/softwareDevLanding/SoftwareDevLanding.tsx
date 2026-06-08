@@ -1,5 +1,6 @@
 import "./software-dev.scss";
 
+import Reveal from "../_shared/Reveal";
 import SwdHeader from "./components/SwdHeader";
 import SwdFooter from "./components/SwdFooter";
 import MobileStickyCta from "./components/MobileStickyCta";
@@ -48,6 +49,7 @@ export default function SoftwareDevLanding() {
 
   return (
     <div className="swd-root">
+      <Reveal rootClass="swd-root" />
       <SwdHeader />
 
       <main>

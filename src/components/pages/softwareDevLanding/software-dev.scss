@@ -181,7 +181,58 @@ html.dark .swd-root {
     background: color-mix(in srgb, var(--swd-bg) 82%, transparent);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--swd-line);
+    animation: swd-header-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
+  .swd-header.is-scrolled {
+    height: 58px;
+    background: color-mix(in srgb, var(--swd-bg) 94%, transparent);
+    box-shadow: 0 10px 30px -16px rgba(12, 16, 28, 0.45);
+    border-bottom-color: transparent;
+  }
+  @keyframes swd-header-in {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  &.reveal-ready {
+    .swd-head, .swd-code, .swd-stats, .swd-svc, .swd-tl-item, .swd-eng,
+    .swd-result, .swd-stat, .swd-figure, .swd-stack-col, .swd-faq details {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .swd-code { transform: translateX(36px) scale(0.97); }
+    .swd-figure { transform: scale(0.93); }
+    .swd-tl-item { transform: translateX(-28px); }
+
+    section.in-view {
+      .swd-head, .swd-code, .swd-stats, .swd-svc, .swd-tl-item, .swd-eng,
+      .swd-result, .swd-stat, .swd-figure, .swd-stack-col, .swd-faq details {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .swd-svc-grid .swd-svc,
+    .swd-eng-grid .swd-eng,
+    .swd-results .swd-result,
+    .swd-stats .swd-stat,
+    .swd-stack-row .swd-stack-col,
+    .swd-faq details {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.07}s; }
+      }
+    }
+    .swd-timeline .swd-tl-item {
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.08}s; }
+      }
+    }
+  }
+
   .swd-brand {
     display: flex;
     align-items: center;
@@ -252,8 +303,8 @@ html.dark .swd-root {
      ======================================================================= */
   .swd-hero {
     position: relative;
-    padding-top: 56px;
-    padding-bottom: 72px;
+    padding-top: 44px;
+    padding-bottom: 44px;
     background:
       radial-gradient(60% 50% at 85% 0%, color-mix(in srgb, var(--swd-accent) 12%, transparent) 0%, transparent 70%);
   }
@@ -368,7 +419,7 @@ html.dark .swd-root {
      ======================================================================= */
   .swd-section {
     position: relative;
-    padding-block: clamp(64px, 9vw, 110px);
+    padding-block: clamp(48px, 6vw, 82px);
   }
   .swd-section--alt {
     background: var(--swd-bg-alt);

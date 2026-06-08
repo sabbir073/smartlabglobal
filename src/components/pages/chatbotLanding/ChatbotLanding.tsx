@@ -1,5 +1,6 @@
 import "./chatbot.scss";
 
+import Reveal from "../_shared/Reveal";
 import BotHeader from "./components/BotHeader";
 import BotFooter from "./components/BotFooter";
 import MobileStickyCta from "./components/MobileStickyCta";
@@ -53,6 +54,7 @@ export default function ChatbotLanding() {
 
   return (
     <div className="bot-root">
+      <Reveal rootClass="bot-root" />
       <BotHeader />
 
       <main>

@@ -130,7 +130,7 @@ html.dark .uiux-root {
   }
   .ux-btn-outline:hover { background: var(--ux-ink); color: var(--ux-bg); }
 
-  .ux-section { padding-block: clamp(60px, 8vw, 112px); }
+  .ux-section { padding-block: clamp(48px, 6vw, 84px); }
   .ux-section--alt { background: var(--ux-bg-2); }
   .ux-head { max-width: 760px; margin-bottom: 50px; }
   .ux-center { margin-inline: auto; text-align: center; }
@@ -145,7 +145,65 @@ html.dark .uiux-root {
     background: color-mix(in srgb, var(--ux-bg) 84%, transparent);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--ux-line-soft);
+    animation: ux-header-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
+  .ux-header.is-scrolled {
+    height: 60px;
+    background: color-mix(in srgb, var(--ux-bg) 95%, transparent);
+    box-shadow: 0 12px 34px -18px rgba(17, 16, 20, 0.4);
+    border-bottom-color: transparent;
+  }
+  @keyframes ux-header-in {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  &.reveal-ready {
+    .ux-head, .ux-svc, .ux-work, .ux-proc-item, .ux-why, .ux-tst, .ux-stat,
+    .ux-deliver-media, .ux-deliver-list li, .ux-tools span {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .ux-collage figure {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .ux-deliver-media { transform: scale(0.93); }
+    .ux-work { transform: translateY(40px) scale(0.97); }
+
+    section.in-view {
+      .ux-head, .ux-svc, .ux-work, .ux-proc-item, .ux-why, .ux-tst, .ux-stat,
+      .ux-deliver-media, .ux-deliver-list li, .ux-tools span, .ux-collage figure {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .ux-svc-grid .ux-svc,
+    .ux-proc .ux-proc-item,
+    .ux-why-grid .ux-why,
+    .ux-tst-grid .ux-tst,
+    .ux-stats .ux-stat,
+    .ux-collage figure,
+    .ux-deliver-list li,
+    .ux-tools span {
+      @for $i from 1 through 9 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.06}s; }
+      }
+    }
+    .ux-masonry .ux-work {
+      @for $i from 1 through 6 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.08}s; }
+      }
+    }
+  }
+
   .ux-brand {
     display: flex; align-items: center; gap: 10px;
     text-decoration: none; color: var(--ux-ink);

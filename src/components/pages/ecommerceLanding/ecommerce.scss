@@ -151,7 +151,7 @@ html.dark .ecm-root {
   }
 
   .ecm-section {
-    padding-block: clamp(58px, 8vw, 104px);
+    padding-block: clamp(46px, 6vw, 80px);
   }
   .ecm-section--alt {
     background: var(--ecm-bg-2);
@@ -181,7 +181,55 @@ html.dark .ecm-root {
     background: color-mix(in srgb, var(--ecm-bg) 85%, transparent);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--ecm-line-soft);
+    animation: ecm-header-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    transition: height 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
+  .ecm-header.is-scrolled {
+    height: 60px;
+    background: color-mix(in srgb, var(--ecm-bg) 95%, transparent);
+    box-shadow: 0 12px 34px -18px rgba(20, 17, 14, 0.4);
+    border-bottom-color: transparent;
+  }
+  @keyframes ecm-header-in {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
+
+  /* ============ SCROLL REVEAL ============ */
+  &.reveal-ready {
+    .ecm-head, .ecm-prob, .ecm-svc-media, .ecm-svc > div, .ecm-result,
+    .ecm-case, .ecm-trust, .ecm-proc-item, .ecm-diff, .ecm-tst, .ecm-price,
+    .ecm-hero-media, .ecm-tech {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .ecm-svc-media, .ecm-hero-media { transform: scale(0.93); }
+
+    section.in-view {
+      .ecm-head, .ecm-prob, .ecm-svc-media, .ecm-svc > div, .ecm-result,
+      .ecm-case, .ecm-trust, .ecm-proc-item, .ecm-diff, .ecm-tst, .ecm-price,
+      .ecm-hero-media, .ecm-tech {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .ecm-prob-grid .ecm-prob,
+    .ecm-results .ecm-result,
+    .ecm-cases .ecm-case,
+    .ecm-trust-grid .ecm-trust,
+    .ecm-proc .ecm-proc-item,
+    .ecm-diff-grid .ecm-diff,
+    .ecm-tst-grid .ecm-tst,
+    .ecm-price-grid .ecm-price {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.07}s; }
+      }
+    }
+  }
+
   .ecm-brand {
     display: flex;
     align-items: center;

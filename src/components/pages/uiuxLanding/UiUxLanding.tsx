@@ -1,5 +1,6 @@
 import "./uiux.scss";
 
+import Reveal from "../_shared/Reveal";
 import UxHeader from "./components/UxHeader";
 import UxFooter from "./components/UxFooter";
 import MobileStickyCta from "./components/MobileStickyCta";
@@ -50,6 +51,7 @@ export default function UiUxLanding() {
 
   return (
     <div className="uiux-root">
+      <Reveal rootClass="uiux-root" />
       <UxHeader />
 
       <main>
