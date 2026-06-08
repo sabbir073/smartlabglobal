@@ -1,0 +1,24 @@
+.video-section {
+    svg {
+        @apply md:w-auto w-[25px]
+    }
+}
+
+.swiper-pagination-bullet {
+  background-color: #FF4306;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #FF4306;
+  width: 12px; /* Slightly bigger width */
+  border-radius: 5px; /* To make it look like a wider dot */
+  opacity: 1;
+}
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 20px; /* Adjust this value as needed to move it below the card */
+}
+

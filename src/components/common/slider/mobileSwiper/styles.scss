@@ -1,0 +1,40 @@
+.our-vales {
+    svg {
+         @apply md:w-auto w-[28px];
+    }
+    .active {
+        @apply bg-[#4D4D4F] text-[#F4F4F4] ;
+
+        svg {
+           
+            path[fill] {
+                fill: #FF4306;
+            }
+            path[stroke] {
+                stroke: #FF4306;
+            }
+        }
+    }
+}
+
+.description-swiper .swiper-slide {
+  width: 100%;
+}
+
+.swiper-pagination-bullet {
+  background-color: #585858;
+  opacity: 0.5;
+  transition: all 0.3s ease-in-out;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #FF4306;
+  width: 12px; /* Slightly bigger width */
+  border-radius: 5px; /* To make it look like a wider dot */
+  opacity: 1;
+}
+
+.swiper-pagination {
+  position: relative;
+  margin-top: 20px; /* Adjust this value as needed to move it below the card */
+}

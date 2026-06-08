@@ -1,0 +1,40 @@
+/* Hide timeline (progress bar) */
+/* .custom-video::-webkit-media-controls-timeline,
+.custom-video::-webkit-media-controls-play-button,
+.custom-video::-webkit-media-controls-current-time-display,
+.custom-video::-webkit-media-controls-time-remaining-display,
+.custom-video::-webkit-media-controls-fullscreen-button  {
+  display: none !important;
+} */
+
+/* 🎥 Hide specific default video controls */
+.custom-video::-webkit-media-controls-timeline {
+  /* ⏱️ Hides the progress (seek) bar */
+  display: none !important;
+}
+
+.custom-video::-webkit-media-controls-play-button {
+  /* ▶️ Hides the play/pause button */
+  display: none !important;
+}
+
+.custom-video::-webkit-media-controls-current-time-display {
+  /* 🕐 Hides the "current time" display */
+  display: none !important;
+}
+
+.custom-video::-webkit-media-controls-time-remaining-display {
+  /* ⏳ Hides the "remaining time" display */
+  display: none !important;
+}
+
+.custom-video::-webkit-media-controls-fullscreen-button {
+  /* ⛶ Hides the fullscreen toggle button */
+  display: none !important;
+}
+
+/* ❌ To hide the 3-dot (more options) button: */
+.custom-video::-webkit-media-controls-enclosure {
+  /* The "enclosure" holds the overflow menu (3-dot button) */
+  overflow: hidden !important;
+}

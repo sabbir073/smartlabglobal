@@ -1,0 +1,77 @@
+const BASE_URL = process.env.BASE_URL;
+const api = {
+  page: {
+    home: `${BASE_URL}/pages`,
+    about: `${BASE_URL}/pages/about`,
+    capabilities: `${BASE_URL}/pages/capabilities`,
+    // insights: "http://localhost:3090/api/page/insights",
+    insights: `${BASE_URL}/pages/insights`,
+    dummy: {
+      about: {
+        // sustainability: "http://localhost:3090/api/page/sustainability",
+        // ourBrand: "http://localhost:3090/api/page/ourBrand",
+        // portfolio: "http://localhost:3090/api/page/portfolio",
+        // awards: "http://localhost:3090/api/page/awards",
+        strategicAlliances: "http://localhost:3090/api/page/strategicAlliances",
+      },
+      insights: {
+        event: "http://localhost:3090/api/page/event",
+        news: "http://localhost:3090/api/page/news",
+        views: "http://localhost:3090/api/page/views",
+        case_study: "http://localhost:3090/api/page/case_study",
+        event_detail: "http://localhost:3090/api/page/event_detail",
+      },
+      industryDetails: "http://localhost:3090/api/page/industryDetails",
+      capabilityDetails: "http://localhost:3090/api/page/capabilityDetails",
+      mlServiceDetails: "http://localhost:3090/api/page/mlServiceDetails",
+      softwareAppServiceDetails:
+        "http://localhost:3090/api/page/softwareAppServiceDetails",
+      career: {
+        whyChooseSlg: "http://localhost:3090/api/page/whyChooseSlg",
+        globalWay: "http://localhost:3090/api/page/careerGlobalWay",
+      },
+    },
+    sustainability: `${BASE_URL}/pages/sustainability`,
+    awards: `${BASE_URL}/pages/awards-recognition`,
+    ourBrand: `${BASE_URL}/pages/our-brand`,
+    clientPortfolio: `${BASE_URL}/pages/our-client-portfolio`,
+    leadership: `${BASE_URL}/pages/leadership`,
+    portfolio: `${BASE_URL}/pages/our-client-portfolio`,
+    strategicAlliances: `${BASE_URL}/pages/strategic-alliance`,
+    capabilityDetails: (slug: string) => `${BASE_URL}/capability/${slug}`,
+    contact_us: `${BASE_URL}/pages/contact-us`,
+    industry: `${BASE_URL}/pages/industries`,
+    industryDetails: (slug: string) => `${BASE_URL}/industry/${slug}`,
+    events: `${BASE_URL}/pages/events`,
+    eventsByFilter: (param: string) => `${BASE_URL}/pages/events?year=${param}`,
+    eventDetails: (slug: string) => `${BASE_URL}/event/${slug}`,
+    eventRegister: `${BASE_URL}/event/registration`,
+    career: `${BASE_URL}/pages/career`,
+    whySmartLab: `${BASE_URL}/pages/why-smart-lab`,
+    globalWay: `${BASE_URL}/pages/the-smart-lab-way`,
+    joinUs: `${BASE_URL}/pages/join-us`,
+    joinUsDetails: (slug: string) => `${BASE_URL}/job/${slug}`,
+    news: `${BASE_URL}/pages/news`,
+    newsByFilter: (param: string) => `${BASE_URL}/pages/news?year=${param}`,
+    newsDetails: (slug: string) => `${BASE_URL}/news/${slug}`,
+    views: `${BASE_URL}/pages/views`,
+    viewsByFilter: (param: string) => `${BASE_URL}/pages/views?slug=${param}`,
+    viewsDetails: (slug: string) => `${BASE_URL}/views/${slug}`,
+    case_study: `${BASE_URL}/pages/case-study`,
+    // case_studyByFilter: (param: string) =>
+    //   `${BASE_URL}/pages/case-study?slug=${param}`,
+    case_studyByFilter: (industry: string, service: string) =>
+      `${BASE_URL}/pages/case-study?industry=${industry}&service=${service}`,
+    case_studyByFilterParamsString: (paramString: string) =>
+      `${BASE_URL}/pages/case-study?${paramString}`,
+    case_studyDetails: (slug: string) => `${BASE_URL}/case-study/${slug}`,
+
+    policy: (slug: string) => `${BASE_URL}/pages/${slug}`,
+    contact_form: `${BASE_URL}/contact`,
+    search: (query: string) => `${BASE_URL}/search?q=${query}`,
+    siteMap: `${BASE_URL}/sitemap`,
+  },
+  navigation: `${BASE_URL}/settings/navigations`,
+  settings: `${BASE_URL}/settings`,
+};
+export default api;

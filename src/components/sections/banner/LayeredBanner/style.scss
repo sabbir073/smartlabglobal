@@ -1,0 +1,21 @@
+.overlay-banner-1 {
+  clip-path: polygon(0 0, 70% 0, 50% 100%, 0% 100%);
+}
+.overlay-banner-2 {
+  clip-path: polygon(0 0, 65% 0, 45% 100%, 0% 100%);
+}
+.overlay-banner-3 {
+  clip-path: polygon(0 0, 60% 0, 40% 100%, 0% 100%);
+}
+
+@media only screen and (max-width: 767px) {
+  .overlay-banner-1 {
+    clip-path: polygon(0% 0%, 100% 0, 100% 62%, 0% 98%);
+  }
+  .overlay-banner-2 {
+    clip-path: polygon(0 0, 100% 0, 100% 52%, 0% 87%);
+  }
+  .overlay-banner-3 {
+    clip-path: polygon(0 0, 100% 0, 100% 42%, 0% 77%);
+  }
+}

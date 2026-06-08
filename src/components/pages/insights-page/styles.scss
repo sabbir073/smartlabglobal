@@ -1,0 +1,33 @@
+.event-btn {
+    svg{
+        path {
+            fill: #F4F4F4;
+        }
+    }
+}
+
+  .it-works-wrapper {
+    width: calc(100% - 58px);
+  }
+
+  .border-line {
+    position: relative;
+
+    &::before {
+      content: "";
+      width: 1px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 21px;
+      background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(255, 255, 255, 1) 10%,
+        rgba(255, 255, 255, 1) 90%,
+        rgba(255, 255, 255, 0.02) 100%
+      );
+      z-index: 0;
+    }
+}
+
