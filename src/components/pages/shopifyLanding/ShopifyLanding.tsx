@@ -1,5 +1,6 @@
 import "./shopify.scss";
 
+import Reveal from "../_shared/Reveal";
 import ShopifyHeader from "./components/ShopifyHeader";
 import ShopifyFooter from "./components/ShopifyFooter";
 import MobileStickyCta from "./components/MobileStickyCta";
@@ -39,6 +40,7 @@ export default function ShopifyLanding() {
 
   return (
     <div className="shopify-root">
+      <Reveal rootClass="shopify-root" />
       <ShopifyHeader />
 
       <main>

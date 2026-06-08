@@ -26,44 +26,55 @@ export default function Reveal({ rootClass }: { rootClass: string }) {
 
     const header = root.querySelector<HTMLElement>("header");
 
-    // --- sticky header state ---
+    const sections = prefersReduced
+      ? []
+      : Array.from(root.querySelectorAll<HTMLElement>("section"));
+    const pending = new Set(sections);
+
+    const reveal = (el: Element) => {
+      el.classList.add("in-view");
+      pending.delete(el as HTMLElement);
+      io?.unobserve(el);
+    };
+
+    // Fallback: reveal anything at/above the viewport. Catches instant jumps
+    // (anchor links, hash navigation, scroll restoration) that the observer
+    // can skip — guarantees content is never left stuck invisible.
+    const sweep = () => {
+      const trigger = window.innerHeight * 0.92;
+      pending.forEach((s) => {
+        if (s.getBoundingClientRect().top < trigger) reveal(s);
+      });
+    };
+
+    // --- sticky header state + reveal sweep ---
     let ticking = false;
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
         if (header) header.classList.toggle("is-scrolled", window.scrollY > 12);
+        if (pending.size) sweep();
         ticking = false;
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // --- scroll reveal ---
+    // --- scroll reveal (observer for smooth scrolling) ---
     let io: IntersectionObserver | undefined;
     if (!prefersReduced) {
       root.classList.add("reveal-ready");
-      const sections = Array.from(root.querySelectorAll<HTMLElement>("section"));
       io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("in-view");
-              io?.unobserve(entry.target);
-            }
+            if (entry.isIntersecting) reveal(entry.target);
           });
         },
-        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
       );
       sections.forEach((s) => io?.observe(s));
-
-      // Safety net: if a section is already on-screen at mount, reveal it.
-      requestAnimationFrame(() => {
-        sections.forEach((s) => {
-          const r = s.getBoundingClientRect();
-          if (r.top < window.innerHeight * 0.9) s.classList.add("in-view");
-        });
-      });
+      requestAnimationFrame(sweep);
     }
 
     return () => {

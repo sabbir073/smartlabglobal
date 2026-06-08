@@ -532,6 +532,44 @@
   .text-white {
     color: var(--sl-text-primary);
   }
+
+  /* ============ SCROLL REVEAL ============ */
+  &.reveal-ready {
+    section .sl-eyebrow,
+    section .sl-display,
+    section .sl-glass,
+    section .sl-marquee,
+    section details.sl-faq {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    section.in-view {
+      .sl-eyebrow,
+      .sl-display,
+      .sl-glass,
+      .sl-marquee,
+      details.sl-faq {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* staggered groups */
+    .sl-bento > * {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.07}s; }
+      }
+    }
+    details.sl-faq {
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) { transition-delay: #{($i - 1) * 0.06}s; }
+      }
+    }
+  }
 }
 
 /* =========================================================================
