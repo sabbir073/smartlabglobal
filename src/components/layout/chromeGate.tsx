@@ -11,7 +11,13 @@
  */
 import { usePathname } from "next/navigation";
 
-const HIDDEN_PATH_PREFIXES = ["/shopify"];
+const HIDDEN_PATH_PREFIXES = [
+  "/shopify",
+  "/custom-software-development",
+  "/ecommerce-development",
+  "/ui-ux-design",
+  "/ai-chatbot",
+];
 
 export default function ChromeGate({
   children,

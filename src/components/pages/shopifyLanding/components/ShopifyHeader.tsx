@@ -1,12 +1,43 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useDarkMode } from "@/hooks/useDarkMode";
 import { BRAND, NAV_ITEMS } from "../data";
+
+/** Sun/moon switcher icons that follow the button's currentColor. */
+function ThemeToggle() {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  return (
+    <button
+      type="button"
+      onClick={toggleDarkMode}
+      aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDarkMode ? "Light mode" : "Dark mode"}
+      className="w-9 h-9 rounded-full grid place-items-center"
+      style={{
+        background: "var(--sl-bg-glass)",
+        border: "1px solid var(--sl-border-strong)",
+        color: "var(--sl-text-primary)",
+        flex: "none",
+      }}
+    >
+      {isDarkMode ? (
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden>
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+      ) : (
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      )}
+    </button>
+  );
+}
 
 /**
  * Sticky glass-pill header for the Shopify landing.
  * Hides on scroll-down, reveals on scroll-up (Headroom pattern).
- * Uses IntersectionObserver-free scroll tracking with rAF.
  */
 export default function ShopifyHeader() {
   const [hidden, setHidden] = useState(false);
@@ -39,10 +70,10 @@ export default function ShopifyHeader() {
         data-hidden={hidden ? "true" : "false"}
       >
         <div className="max-w-[1200px] mx-auto sl-header-pill">
-          {/* Brand */}
           <a
             href="#top"
-            className="flex items-center gap-2 text-white font-semibold tracking-tight"
+            className="flex items-center gap-2 font-semibold tracking-tight"
+            style={{ color: "var(--sl-text-primary)" }}
             aria-label={BRAND.name}
           >
             <span
@@ -61,7 +92,6 @@ export default function ShopifyHeader() {
             </span>
           </a>
 
-          {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1 ml-2">
             {NAV_ITEMS.map((item) => (
               <a key={item.href} href={item.href} className="sl-nav-link">
@@ -70,15 +100,15 @@ export default function ShopifyHeader() {
             ))}
           </nav>
 
-          {/* Right */}
           <div className="ml-auto flex items-center gap-2">
+            <ThemeToggle />
             <a
               href={`https://wa.me/${BRAND.whatsapp}?text=Hi%2C%20I%27d%20like%20to%20talk%20about%20my%20Shopify%20store`}
               className="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-full text-[13px]"
               style={{
                 background: "rgba(16, 240, 160, 0.08)",
                 border: "1px solid rgba(16, 240, 160, 0.25)",
-                color: "#10F0A0",
+                color: "var(--sl-success)",
               }}
               aria-label="WhatsApp us"
             >
@@ -124,12 +154,11 @@ export default function ShopifyHeader() {
         </div>
       </header>
 
-      {/* Mobile fullscreen overlay */}
       {open && (
         <div
           className="fixed inset-0 z-[120] lg:hidden"
           style={{
-            background: "rgba(10,10,15,0.92)",
+            background: "var(--sl-overlay)",
             backdropFilter: "blur(28px)",
           }}
           role="dialog"
@@ -138,10 +167,11 @@ export default function ShopifyHeader() {
           <div className="flex justify-end p-4">
             <button
               onClick={() => setOpen(false)}
-              className="w-10 h-10 rounded-full grid place-items-center text-white"
+              className="w-10 h-10 rounded-full grid place-items-center"
               style={{
                 background: "var(--sl-bg-glass)",
                 border: "1px solid var(--sl-border-strong)",
+                color: "var(--sl-text-primary)",
               }}
               aria-label="Close menu"
             >

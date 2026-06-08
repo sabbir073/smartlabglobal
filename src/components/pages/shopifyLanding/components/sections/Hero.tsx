@@ -114,7 +114,7 @@ function HeroMockup() {
             key={kpi.label}
             className="rounded-2xl p-3"
             style={{
-              background: "rgba(255,255,255,0.03)",
+              background: "var(--sl-surface-1)",
               border: "1px solid var(--sl-border-glass)",
             }}
           >

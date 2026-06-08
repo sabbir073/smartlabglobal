@@ -4,27 +4,34 @@
    ========================================================================= */
 
 .shopify-root {
-  /* ============ DESIGN TOKENS ============ */
-  --sl-bg-canvas: #0A0A0F;
-  --sl-bg-elevated: #12121A;
-  --sl-bg-glass: rgba(255, 255, 255, 0.04);
-  --sl-bg-glass-strong: rgba(255, 255, 255, 0.06);
-  --sl-border-glass: rgba(255, 255, 255, 0.08);
-  --sl-border-strong: rgba(255, 255, 255, 0.14);
+  /* ============ DESIGN TOKENS — LIGHT (default) ============ */
+  /* The site default theme is light (no `dark` class on <html>).
+     Dark values live in `html.dark .shopify-root` at the bottom of this file. */
+  --sl-bg-canvas: #f5f6f9;
+  --sl-bg-elevated: #ffffff;
+  --sl-bg-glass: rgba(255, 255, 255, 0.72);
+  --sl-bg-glass-strong: rgba(255, 255, 255, 0.88);
+  --sl-border-glass: rgba(12, 16, 28, 0.1);
+  --sl-border-strong: rgba(12, 16, 28, 0.16);
+  --sl-surface-1: rgba(12, 16, 28, 0.04); /* subtle inner tiles */
+  --sl-bg-pill: rgba(255, 255, 255, 0.78); /* header pill / mobile cta */
+  --sl-overlay: rgba(245, 246, 249, 0.92); /* mobile menu overlay */
+  --sl-grain-color: rgba(12, 16, 28, 0.04);
+  --sl-aurora-opacity: 0.16;
 
   /* Brand orange replaces violet from PRD */
   --sl-accent-primary: #FF4306;
   --sl-accent-primary-soft: #FF6A3A;
   --sl-accent-warm: #FFB454;
   --sl-accent-magenta: #FF6B9D;
-  --sl-success: #10F0A0;
-  --sl-warning: #FFB454;
-  --sl-danger: #FF5A6B;
+  --sl-success: #0f9d6c;
+  --sl-warning: #c97a14;
+  --sl-danger: #d23d4d;
 
-  --sl-text-primary: #F5F5F7;
-  --sl-text-secondary: #C4C4CC;
-  --sl-text-muted: #A1A1AA;
-  --sl-text-faint: #52525B;
+  --sl-text-primary: #0e1116;
+  --sl-text-secondary: #3a4049;
+  --sl-text-muted: #5c6470;
+  --sl-text-faint: #98a0ad;
 
   /* Radii */
   --sl-r-sm: 8px;
@@ -35,8 +42,8 @@
 
   /* Shadows / glows */
   --sl-shadow-card:
-    0 1px 0 rgba(255, 255, 255, 0.04) inset,
-    0 24px 60px -20px rgba(0, 0, 0, 0.6);
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 24px 60px -28px rgba(12, 16, 28, 0.3);
   --sl-glow-primary: 0 0 80px -20px var(--sl-accent-primary);
 
   /* Header geometry */
@@ -71,7 +78,7 @@
       height: 60vw;
       border-radius: 50%;
       filter: blur(120px);
-      opacity: 0.35;
+      opacity: var(--sl-aurora-opacity);
     }
     &::before {
       background: radial-gradient(
@@ -110,12 +117,11 @@
     pointer-events: none;
     z-index: 1;
     background-image: radial-gradient(
-      rgba(255, 255, 255, 0.04) 1px,
+      var(--sl-grain-color) 1px,
       transparent 1px
     );
     background-size: 3px 3px;
     opacity: 0.4;
-    mix-blend-mode: overlay;
   }
 
   /* ============ GLASS SURFACE ============ */
@@ -325,13 +331,13 @@
     gap: 24px;
     padding: 10px 14px 10px 22px;
     border-radius: 9999px;
-    background: rgba(10, 10, 15, 0.7);
+    background: var(--sl-bg-pill);
     border: 1px solid var(--sl-border-glass);
     backdrop-filter: blur(20px) saturate(160%);
     -webkit-backdrop-filter: blur(20px) saturate(160%);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.04) inset,
-      0 18px 50px -20px rgba(0, 0, 0, 0.7);
+      0 18px 50px -28px rgba(12, 16, 28, 0.4);
   }
   .sl-nav-link {
     color: var(--sl-text-secondary);
@@ -441,10 +447,10 @@
     gap: 8px;
     padding: 10px;
     border-radius: 9999px;
-    background: rgba(10, 10, 15, 0.85);
+    background: var(--sl-bg-pill);
     border: 1px solid var(--sl-border-strong);
     backdrop-filter: blur(20px);
-    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 20px 50px -20px rgba(12, 16, 28, 0.4);
     @media (max-width: 900px) {
       display: flex;
     }
@@ -518,4 +524,44 @@
     background: rgba(255, 67, 6, 0.35);
     color: #fff;
   }
+
+  /* ============ THEME-AWARE UTILITY REDIRECTS ============ */
+  /* Sections use Tailwind `text-white` for headings. Redirect it to the
+     themed primary-text token so it turns dark in light mode. Higher
+     specificity than Tailwind's single-class `.text-white`, so it wins. */
+  .text-white {
+    color: var(--sl-text-primary);
+  }
+}
+
+/* =========================================================================
+   DARK THEME OVERRIDES
+   Activated by the site-wide switcher (useDarkMode adds `dark` to <html>).
+   These restore the original dark-glassmorphism palette.
+   ========================================================================= */
+html.dark .shopify-root {
+  --sl-bg-canvas: #0a0a0f;
+  --sl-bg-elevated: #12121a;
+  --sl-bg-glass: rgba(255, 255, 255, 0.04);
+  --sl-bg-glass-strong: rgba(255, 255, 255, 0.06);
+  --sl-border-glass: rgba(255, 255, 255, 0.08);
+  --sl-border-strong: rgba(255, 255, 255, 0.14);
+  --sl-surface-1: rgba(255, 255, 255, 0.03);
+  --sl-bg-pill: rgba(10, 10, 15, 0.7);
+  --sl-overlay: rgba(10, 10, 15, 0.92);
+  --sl-grain-color: rgba(255, 255, 255, 0.04);
+  --sl-aurora-opacity: 0.35;
+
+  --sl-success: #10f0a0;
+  --sl-warning: #ffb454;
+  --sl-danger: #ff5a6b;
+
+  --sl-text-primary: #f5f5f7;
+  --sl-text-secondary: #c4c4cc;
+  --sl-text-muted: #a1a1aa;
+  --sl-text-faint: #52525b;
+
+  --sl-shadow-card:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 24px 60px -20px rgba(0, 0, 0, 0.6);
 }

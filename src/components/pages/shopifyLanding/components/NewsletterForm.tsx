@@ -23,7 +23,7 @@ export default function NewsletterForm() {
           flex: 1,
           padding: "12px 14px",
           borderRadius: "9999px 0 0 9999px",
-          background: "rgba(255,255,255,0.04)",
+          background: "var(--sl-surface-1)",
           border: "1px solid var(--sl-border-glass)",
           borderRight: "none",
           color: "var(--sl-text-primary)",

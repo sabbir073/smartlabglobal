@@ -28,7 +28,7 @@ export default function TrustBar() {
                   fontWeight: 500,
                   letterSpacing: "-0.01em",
                   border: "1px solid var(--sl-border-glass)",
-                  background: "rgba(255,255,255,0.02)",
+                  background: "var(--sl-surface-1)",
                   minWidth: 160,
                   textAlign: "center",
                 }}

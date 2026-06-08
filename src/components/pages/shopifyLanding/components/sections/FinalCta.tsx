@@ -125,7 +125,7 @@ export default function FinalCta() {
                 className="sl-glass p-6 h-full flex flex-col"
                 style={{
                   borderRadius: "var(--sl-r-xl)",
-                  background: "rgba(255,255,255,0.02)",
+                  background: "var(--sl-surface-1)",
                 }}
               >
                 <div
@@ -168,7 +168,7 @@ export default function FinalCta() {
                         style={{
                           background: open
                             ? "rgba(255,67,6,0.10)"
-                            : "rgba(255,255,255,0.02)",
+                            : "var(--sl-surface-1)",
                           color: open
                             ? "var(--sl-accent-primary-soft)"
                             : "var(--sl-text-faint)",
@@ -242,7 +242,7 @@ const selectStyle: React.CSSProperties = {
   width: "100%",
   padding: "14px 16px",
   borderRadius: 12,
-  background: "rgba(255,255,255,0.04)",
+  background: "var(--sl-surface-1)",
   border: "1px solid var(--sl-border-glass)",
   color: "var(--sl-text-primary)",
   fontSize: 15,
@@ -268,7 +268,7 @@ function Field({
     width: "100%",
     padding: "14px 16px",
     borderRadius: 12,
-    background: "rgba(255,255,255,0.04)",
+    background: "var(--sl-surface-1)",
     border: "1px solid var(--sl-border-glass)",
     color: "var(--sl-text-primary)",
     fontSize: 15,

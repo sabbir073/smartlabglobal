@@ -101,7 +101,7 @@ export default function ShopifyFooter() {
           width: 44,
           height: 44,
           borderRadius: "50%",
-          background: "rgba(10,10,15,0.7)",
+          background: "var(--sl-bg-pill)",
           border: "1px solid var(--sl-border-strong)",
           backdropFilter: "blur(12px)",
           color: "var(--sl-text-primary)",

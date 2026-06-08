@@ -40,7 +40,7 @@ export default function Comparison() {
           <div
             className="grid grid-cols-[2fr_repeat(3,1fr)] text-[13px]"
             style={{
-              background: "rgba(255,255,255,0.03)",
+              background: "var(--sl-surface-1)",
               borderBottom: "1px solid var(--sl-border-glass)",
             }}
           >
