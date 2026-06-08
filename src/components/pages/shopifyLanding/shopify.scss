@@ -55,7 +55,7 @@
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 
   /* Section anchor offset so sticky header doesn't overlap */
   section[id] {

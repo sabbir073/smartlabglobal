@@ -40,7 +40,7 @@
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
 
   section[id] { scroll-margin-top: calc(var(--ux-header-h) + 16px); }
 }
